@@ -1,0 +1,136 @@
+body
+{
+    font-family: 'Rubik', sans-serif;
+}
+
+.bg-main
+{
+    background-color: #02a149;
+}
+
+.bg-bright
+{
+    background-color: #feffff;
+}
+
+
+.bg-dark-main
+{
+    background-color: #512DA8;
+}
+
+.bg-light
+{
+    background-color: #D1C4E9;
+}
+
+.bg-softlight
+{
+    background-color: #b4d8c9;
+}
+.accent-color
+{
+    color: #00b140;
+}
+
+/*Typography*/
+.heading
+{
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.1em;
+}
+/*Navigation*/
+.navbar-nav {
+    height: 60px;
+}
+
+.navbar-nav .nav-item {
+    flex: 1;
+    text-align: center;
+}
+
+.navbar-nav .nav-link i {
+    font-size: 1.5rem;
+    display: block;
+    margin: 0 auto;
+}
+
+
+/*Buttons*/
+.btn-accent {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #00b140;
+    --bs-btn-border-color: #00b140;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #02a149;
+    --bs-btn-hover-border-color: #02a149;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #02a149;
+    --bs-btn-active-border-color: #02a149;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #00b140;
+    --bs-btn-disabled-border-color: #00b140;
+}
+
+
+/*Cards*/
+.card-game
+{
+    cursor:pointer;
+    overflow: hidden;
+}
+
+.card-img-top {
+    transition: transform 0.2s ease-in-out;
+}
+
+.card-game:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+.selected-card
+{
+    background-color: #02a149;
+    color: #feffff;
+    border-color: #00b140;
+}
+
+.selected-payment-card
+{
+    background-color: #02a149;
+    color: #feffff;
+    border-color: #00b140;
+}
+
+
+#loading-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+}
+
+#loading-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 9999;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
