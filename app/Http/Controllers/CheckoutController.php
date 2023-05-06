@@ -16,7 +16,6 @@ class CheckoutController extends Controller
     public function __invoke(Request $request)
     {
 
-//        Config::$overrideNotifUrl = route('midtrans.notification');
         $product = Product::with('game')->where('product_code', $request->input('product_code'))->firstOrFail();
         $payment_method = PaymentMethod::where('name', $request->input('payment_method'))->firstOrFail();
 
@@ -66,6 +65,7 @@ class CheckoutController extends Controller
             }
 
             $response =  MidtransResponseAdapter::read($midtrans);
+
 
             $order->payment()->update($response);
             return redirect(route('order.show', $order));

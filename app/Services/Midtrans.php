@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\Order;
-use Midtrans\Config;
 use Midtrans\CoreApi;
 
 class Midtrans

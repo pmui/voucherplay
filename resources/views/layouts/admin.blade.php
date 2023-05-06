@@ -28,20 +28,17 @@
                     <a class="nav-link active" aria-current="page" href="#"><i class="fa fa-chart-line"></i> Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-gamepad"></i> Games</a>
+                    <a class="nav-link" href="{{ route('admin.game') }}"><i class="fa fa-gamepad"></i> Games</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-shopping-cart"></i> Order</a>
+                    <a class="nav-link" href="{{ route('admin.order') }}"><i class="fa fa-shopping-cart"></i> Order</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="fa fa-users"></i> Cutomers</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-users"></i> Report</a>
-                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown link
+                        <i class="fa fa-file"></i> Report
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Action</a></li>

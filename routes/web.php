@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/cekMT', function (){
+    return \Midtrans\Config::$isProduction." <-> ".\Midtrans\Config::$serverKey;
+});
+
 Route::get('/', \App\Http\Controllers\HomeController::class)->name('home');
 Route::get('/top-up/{game?}', \App\Http\Controllers\TopUpController::class)->name('top-up');
 Route::post('/co', \App\Http\Controllers\CheckoutController::class)->name('co');
@@ -26,6 +30,7 @@ Route::post('/src/validate_account', [\App\Http\Controllers\BoostConnectControll
 Route::view('policy-privacy','privacy-policy')->name('policy-privacy');
 Route::view('term-condition','term-condition')->name('term-condition');
 Route::view('faq','faq')->name('faq');
+Route::view('contact','contact')->name('contact');
 
 Route::get('/sync/games', [\App\Http\Controllers\BoostConnectController::class, 'syncGames'])->name('sync.games');
 Route::get('/sync/gameType', [\App\Http\Controllers\BoostConnectController::class, 'syncGameType'])->name('sync.gameType');

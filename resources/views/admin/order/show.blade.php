@@ -13,20 +13,20 @@
                             <div class="col-md-6">
                                 <p><strong>Order Information:</strong></p>
                                 <ul class="list-unstyled">
-                                    <li><strong>ID:</strong> 123456</li>
-                                    <li><strong>Date:</strong> 20 April 2023</li>
-                                    <li><strong>Status:</strong> Paid</li>
-                                    <li><strong>Email:</strong> johndoe@gmail.com</li>
-                                    <li><strong>Game Account Name:</strong> JohnDoe123</li>
+                                    <li><strong>ID:</strong> {{ $order->id }}</li>
+                                    <li><strong>Date:</strong> {{ $order->created_at }}</li>
+                                    <li><strong>Status:</strong> {{ $order->status }}</li>
+                                    <li><strong>Email:</strong> {{ $order->email }}</li>
+                                    <li><strong>Game Account Name:</strong> {{ $order->id }}</li>
                                 </ul>
                             </div>
                             <div class="col-md-6">
                                 <p><strong>Game Information:</strong></p>
                                 <ul class="list-unstyled">
-                                    <li><strong>Title:</strong> Call of Duty: Mobile</li>
-                                    <li><strong>Code:</strong> CODM</li>
-                                    <li><strong>Type:</strong> Voucher</li>
-                                    <li><strong>Image:</strong> <img src="https://example.com/image.jpg" alt="Product Image" class="img-fluid"></li>
+                                    <li><img src="{{ $order->game->image_url }}" alt="{{ $order->game->title }}" class="img-fluid w-25"></li>
+                                    <li><strong>Title:</strong> {{ $order->game->title }}</li>
+                                    <li><strong>Code:</strong> {{ $order->game->code }}</li>
+                                    <li><strong>Type:</strong> {{ $order->game->type }}</li>
                                 </ul>
                             </div>
                         </div>
@@ -35,18 +35,18 @@
                             <div class="col-md-6">
                                 <p><strong>Product Information:</strong></p>
                                 <ul class="list-unstyled">
-                                    <li><strong>Code:</strong> ABC123</li>
-                                    <li><strong>Name:</strong> Call of Duty: Mobile Voucher $10</li>
-                                    <li><strong>Price:</strong> $10</li>
+                                    <li><strong>Code:</strong> {{ $order->product->product_code }}</li>
+                                    <li><strong>Name:</strong> {{ $order->product->name }}</li>
+                                    <li><strong>Price:</strong> {{ number_format($order->product->price) }}</li>
                                 </ul>
                             </div>
                             <div class="col-md-6">
                                 <p><strong>Payment Information:</strong></p>
                                 <ul class="list-unstyled">
-                                    <li><strong>Subtotal:</strong> $10</li>
-                                    <li><strong>Discount:</strong> $0</li>
-                                    <li><strong>Admin Fee:</strong> $1</li>
-                                    <li><strong>Payment Method:</strong> Bank Transfer</li>
+                                    <li><strong>Subtotal:</strong> {{ number_format($order->payment->subtotal) }}</li>
+                                    <li><strong>Discount:</strong> {{ number_format($order->payment->discount) }}</li>
+                                    <li><strong>Admin Fee:</strong> {{ number_format($order->payment->admin_fee) }}</li>
+                                    <li><strong>Payment Method:</strong> <img src="{{ $order->payment->paymentMethod->image_url }}" alt="{{ $order->payment->paymentMethod->name }}" style="height: 16px"> {{ $order->payment->paymentMethod->name }}</li>
                                 </ul>
                             </div>
                         </div>

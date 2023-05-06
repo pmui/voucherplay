@@ -86,6 +86,7 @@
             <a class="text-decoration-none mx-4" href="{{ route('faq') }}">FAQ</a>
             <a class="text-decoration-none mx-4" href="{{ route('term-condition') }}">Syarat dan Ketentuan</a>
             <a class="text-decoration-none mx-4" href="{{ route('policy-privacy') }}">Kebijakan Privasi</a>
+            <a class="text-decoration-none mx-4" href="{{ route('contact') }}">Kontak Kami</a>
         </div>
 
     </footer>
