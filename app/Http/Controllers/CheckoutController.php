@@ -24,6 +24,8 @@ class CheckoutController extends Controller
             'game_code' => $product->game->code,
             'product_code' => $product->product_code,
             'price' => $request->input('product_price'),
+            'cost' => $product->cost,
+            'status' => 'waiting payment',
             'validation_fields' => json_encode($request->input('account') ?? []),
         ]);
 

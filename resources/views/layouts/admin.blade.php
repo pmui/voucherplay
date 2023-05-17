@@ -53,6 +53,11 @@
 <main>
     @yield('content')
 </main>
+<footer class="mt-5">
+    <div class="container">
+        <p>PT Prima Digital Indonesia</p>
+    </div>
+</footer>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

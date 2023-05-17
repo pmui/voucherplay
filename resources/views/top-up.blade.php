@@ -280,8 +280,10 @@
                     let fee;
                     if ($(element).data('fee-percent')) {
                         fee = +(productPrice.val() * $(element).data('fee-percent') / 100);
+                        console.log('using percent fee')
                     } else {
                         fee = $(element).data('fee');
+                        console.log('using fixed fee')
                     }
                     fee = Math.round(fee);
                     let subtotal = +productPrice.val() + fee;

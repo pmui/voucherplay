@@ -2,7 +2,9 @@
 
 @section('content')
     <div class="container mt-5">
-        <div class="row">
+        <h3 class="my-2"><i class="fa fa-gamepad mr-2"></i> <a href="{{ route('admin.game') }}" class="text-decoration-none" >Games</a>
+        / {{ $game->code }}</h3>
+        <div class="row mt-5">
             <div class="col-md-3">
                 <img src="{{ $game->image_url }}" alt="Game Image" class=" w-100 img-fluid">
             </div>
@@ -22,33 +24,40 @@
 
         <div class="row mt-5">
             <div class="col-md-12">
-                <h4 class="my-2">Products</h4>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>CODE</th>
-                        <th>NAME</th>
-                        <th>COST</th>
-                        <th>PRICE</th>
-                        <th>ACTIVE</th>
-                        <th>ACTION</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($game->products as $product)
-                        <tr>
-                            <td>{{ $product->id }}</td>
-                            <td>{{ $product->product_code }}</td>
-                            <td>{{ $product->name }}</td>
-                            <td>{{ number_format($product->price) }}</td>
-                            <td>{{ number_format($product->price) }}</td>
-                            <td>{{ $product->active }}</td>
-                            <td><a href="">Edit</a></td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">Products</strong>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>CODE</th>
+                                <th>NAME</th>
+                                <th>COST</th>
+                                <th>PRICE</th>
+                                <th>ACTIVE</th>
+                                <th>ACTION</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($game->products as $product)
+                                <tr>
+                                    <td>{{ $product->id }}</td>
+                                    <td>{{ $product->product_code }}</td>
+                                    <td>{{ $product->name }}</td>
+                                    <td>{{ number_format($product->price) }}</td>
+                                    <td>{{ number_format($product->price) }}</td>
+                                    <td>{{ $product->active }}</td>
+                                    <td><a href="{{ route('admin.product.edit',[$game, $product]) }}">Edit</a></td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

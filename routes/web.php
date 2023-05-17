@@ -51,6 +51,9 @@ Route::prefix('admin')->group(function (){
 
    Route::get('/game',[\App\Http\Controllers\Admin\GameController::class, 'index'])->name('admin.game');
    Route::get('/game/{game}',[\App\Http\Controllers\Admin\GameController::class, 'show'])->name('admin.game.show');
+   Route::get('/game/{game}/product/{product}',[\App\Http\Controllers\Admin\ProductController::class, 'edit'])->name('admin.product.edit');
+
+   Route::put('/product/{product}',[\App\Http\Controllers\Admin\ProductController::class, 'update'])->name('admin.product.update');
 
     Route::get('/order',[\App\Http\Controllers\Admin\OrderController::class, 'index'])->name('admin.order');
     Route::get('/order/{order}/detail',[\App\Http\Controllers\Admin\OrderController::class, 'show'])->name('admin.order.detail');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Game;
+use App\Models\Product;
 
 class GameController extends Controller
 {
@@ -17,4 +18,5 @@ class GameController extends Controller
     {
         return view('admin.games.show', compact('game'));
     }
+
 }

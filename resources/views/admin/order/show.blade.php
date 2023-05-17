@@ -4,9 +4,11 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-lg-12">
-                <div class="card">
+                <h3 class="my-2"><i class="fa fa-shopping-cart mr-2"></i> <a href="{{ route('admin.order') }}" class="text-decoration-none" >Order</a>
+                    / {{ $order->id }}</h3>
+                <div class="card mt-5">
                     <div class="card-header">
-                        <h4>Order Detail #123456</h4>
+                        <h4>Order Detail #{{ $order->id }}</h4>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -53,9 +55,9 @@
                         <hr>
                         <p><strong>Order Log:</strong></p>
                         <ul class="list-unstyled">
-                            <li>Order created: 20 April 2023 10:00 AM</li>
-                            <li>Order paid: 20 April 2023 10:30 AM</li>
-                            <li>Order completed: 20 April 2023 11:00 AM</li>
+                            @foreach($activities as $log)
+                                <li>{{ $log->created_at }} {{ $log->description }}</li>
+                            @endforeach
                         </ul>
                         <button class="btn btn-primary">Resend Email</button>
                     </div>
