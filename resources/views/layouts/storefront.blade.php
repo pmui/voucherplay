@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="id" data-bs-theme="light">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F7YK02SP6S"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '{{ env('GTAG') ?? '' }}');
+    </script>
     <title>{{ $title ?? config('app.name') }}</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">

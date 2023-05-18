@@ -40,6 +40,11 @@ class MidtransResponseAdapter
                 $output['links'] = $response->actions;
             }
 
+            if(isset($response->expiry_time))
+            {
+                $output['expire'] = $response->expiry_time;
+            }
+
             return $output;
         }
         catch (\Exception $exception)

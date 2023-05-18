@@ -37,10 +37,10 @@
                         </div>
 
                         <div class="">
-                            <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis debitis delectus ducimus error eum expedita, facilis ipsum iste laborum modi nisi praesentium quidem repudiandae similique soluta sunt temporibus voluptates voluptatum.</p>
+                            <p class="">{{ $game->description }}</p>
 
                             <h5 class="mt-2">Cara Top-Up</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis debitis delectus ducimus error eum expedita, facilis ipsum iste laborum modi nisi praesentium quidem repudiandae similique soluta sunt temporibus voluptates voluptatum.</p>
+                            <p>{{ $game->info }}</p>
                         </div>
                     </div>
                 </div>
