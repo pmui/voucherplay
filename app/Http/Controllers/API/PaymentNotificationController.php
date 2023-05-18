@@ -1,19 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Jobs\ExecuteOrderJob;
-use App\Jobs\SendMailNotif;
 use App\Models\Order;
 use App\Models\Payment;
 use Midtrans\Notification;
 
 class PaymentNotificationController extends Controller
 {
-    public function __invoke()
+    public function handle()
     {
-        return "OK";
-        /*try {
+        try {
             $notif = new Notification();
             $notif = $notif->getResponse();
 
@@ -32,7 +31,7 @@ class PaymentNotificationController extends Controller
             return $log;
         } catch (\Exception $e) {
             exit($e->getMessage());
-        }*/
+        }
 
 
     }
