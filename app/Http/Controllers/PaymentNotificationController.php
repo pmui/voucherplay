@@ -12,7 +12,8 @@ class PaymentNotificationController extends Controller
 {
     public function __invoke()
     {
-        try {
+        return "OK";
+        /*try {
             $notif = new Notification();
             $notif = $notif->getResponse();
 
@@ -31,7 +32,7 @@ class PaymentNotificationController extends Controller
             return $log;
         } catch (\Exception $e) {
             exit($e->getMessage());
-        }
+        }*/
 
 
     }
