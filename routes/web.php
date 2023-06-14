@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/cekMT', function (){
-    return \Midtrans\Config::$isProduction." <-> ".\Midtrans\Config::$serverKey;
-});
+Route::post('/midtrans/notification', [\App\Http\Controllers\API\PaymentNotificationController::class,'handle'])->name('midtrans.notification');
 
 Route::get('/', \App\Http\Controllers\HomeController::class)->name('home');
 Route::get('/top-up/{game?}', \App\Http\Controllers\TopUpController::class)->name('top-up');

@@ -12,6 +12,11 @@ class Game extends Model
     use HasFactory;
     use LogsActivity;
 
+    public function getRouteKeyName(): string
+    {
+        return 'code';
+    }
+
     protected $fillable = ['code','title','type', 'image_url','active','trending','validation_fields', 'description', 'info', 'tnc'];
 
     protected $hidden = ['created_at','updated_at'];

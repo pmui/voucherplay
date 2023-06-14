@@ -96,7 +96,7 @@
 
                                 @foreach($game->products as $product)
                                     <div class="col-4">
-                                        <x-card-product :product_code="$product->product_code" :title="$product->name" :price="$product->price"/>
+                                        <x-card-product :product_code="$product->product_code" :title="$product->name" :price="$product->price" :value="$product->value"/>
                                     </div>
                                 @endforeach
 
@@ -133,10 +133,10 @@
     </div>
 
     <div class="d-md-none mt-4 mb-2 p-2">
-        <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis debitis delectus ducimus error eum expedita, facilis ipsum iste laborum modi nisi praesentium quidem repudiandae similique soluta sunt temporibus voluptates voluptatum.</p>
+        <p class="">{{ $game->description }}</p>
 
         <h5 class="mt-2">Cara Top-Up</h5>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis debitis delectus ducimus error eum expedita, facilis ipsum iste laborum modi nisi praesentium quidem repudiandae similique soluta sunt temporibus voluptates voluptatum.</p>
+        <p>{{ $game->info }}</p>
     </div>
 
     <!-- Button trigger modal -->
@@ -277,6 +277,11 @@
 
             function calculateAdminFee(amount) {
                 paymentMethodOption.each((index, element) => {
+                    if ($(element).data('minimum-amount') > productPrice.val()) {
+                        $(element).hide();
+                    }else{
+                        $(element).show();
+                    }
                     let fee;
                     if ($(element).data('fee-percent') > 0) {
                         fee = +(productPrice.val() * $(element).data('fee-percent') / 100);

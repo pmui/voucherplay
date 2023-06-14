@@ -16,6 +16,7 @@
                              data-method="{{ $method->name }}"
                              data-fee="{{ $method->fee_amount }}"
                              data-fee-percent="{{ $method->fee_percent }}"
+                             data-minimum-amount="{{ $method->min_amount }}"
                              data-calculated-fee="0">
 
                             <div class="card-body text-center">

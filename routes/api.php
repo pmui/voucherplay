@@ -19,4 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('irs-handler',[\App\Http\Controllers\API\IRS::class, 'order']);
-Route::post('/midtrans/notification', [\App\Http\Controllers\API\PaymentNotificationController::class,'handle'])->name('midtrans.notification');
+Route::post('/midtrans/notification', [\App\Http\Controllers\API\PaymentNotificationController::class,'handle'])->name('api.midtrans.notification');
