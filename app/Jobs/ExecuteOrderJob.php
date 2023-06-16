@@ -44,8 +44,8 @@ class ExecuteOrderJob implements ShouldQueue
         }else{
             $this->order->update([
                 'status' => 'success',
-                'voucher_code' => $response->productPin,
-                'response' => $json,
+                'voucher_code' => $response->productPin ?? '',
+                'response' => $json ?? '',
                 'reference' => $response->vasTransID,
             ]);
 
