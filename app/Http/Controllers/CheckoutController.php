@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\PaymentMethod;
 use App\Models\Product;
+use App\Notifications\InvoiceNotification;
 use App\Notifications\TrxSuccessNotification;
 use App\Services\Midtrans;
 use App\Services\MidtransResponseAdapter;
@@ -68,9 +69,12 @@ class CheckoutController extends Controller
 
             $response =  MidtransResponseAdapter::read($midtrans);
 
-
             $order->payment()->update($response);
+
+            $order->notify(new InvoiceNotification($order));
+
             return redirect(route('order.show', $order));
+
         } catch (\Exception $exception)
         {
             $order->update(['status' => 'failed']);

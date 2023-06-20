@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class TrxSuccessNotification extends Notification
+class InvoiceNotification extends Notification
 {
     use Queueable;
 
@@ -43,18 +43,25 @@ class TrxSuccessNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-            ->subject('Transaksi berhasil #'.$this->order->id)
-            ->greeting('Selamat Transaksi Anda berhasil!')
-            ->line('Terimakasih telah berbelanja di toko kami. Berikut adalah rincian tranasaki Anda:')
+        $message = new MailMessage();
+
+        $message
+            ->subject('Menunggu Pembayaran #'.$this->order->id)
+            ->greeting('Halo')
+            ->line('Harap selesaikan pembayaran Anda ')
             ->line('ID      : '.$this->order->id)
             ->line('Game      : '.$this->order->game_code)
             ->line('Item      : '.$this->order->product_code)
-            ->lineif($this->order->voucher_code,'Kode Voucher      : '.$this->order->voucher_code)
-            ->line('No. Reference      : '.$this->order->reference)
-            ->line('')
-            ->line('Ini adalah email otomtis, harap tidak membalas email ini.');
+            ->line('Metode Pembayaran      : '.$this->order->payment->paymentMethod->name)
+            ->lineIf($this->order->payment->va_number > 0, 'Nomor VA    : '.$this->order->payment->va_number)
+            ->line('Total Tagihan      : Rp. '.number_format($this->order->payment->total))
+            ->line('Batas Waktu Pembayaran      : '.date('l, d F Y H:i', strtotime($this->order->payment->expire)))
+            ->action('Lakukan Pembayaran', route('order.show',$this->order));
 
+
+
+
+        return  $message;
     }
 
     /**
@@ -68,12 +75,5 @@ class TrxSuccessNotification extends Notification
         return [
             //
         ];
-    }
-
-    public function toMailUsing($notifiable)
-    {
-        return (new MailMessage)
-            ->view('vendor.mail.html.message', ['url' => 'https://digitalprima.co.id', 'logo' => 'https://i0.wp.com/pmui.co.id/wp-content/uploads/2022/09/Logo-1.png'])
-            ->subject('Subjek email baru');
     }
 }

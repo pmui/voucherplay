@@ -49,7 +49,7 @@ class ExecuteOrderJob implements ShouldQueue
                 'reference' => $response->vasTransID,
             ]);
 
-            $this->dispatch(new SendMailNotif($this->order));
+            SendMailNotif::dispatch($this->order);
 
         }
     }

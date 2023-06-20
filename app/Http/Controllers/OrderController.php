@@ -15,6 +15,6 @@ class OrderController extends Controller
     public function resendMail(Order $order)
     {
         $this->dispatch(new SendMailNotif($order));
-        return $order;
+        return view('resend_success', compact($order));
     }
 }
