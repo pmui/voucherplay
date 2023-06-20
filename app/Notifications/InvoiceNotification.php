@@ -47,6 +47,7 @@ class InvoiceNotification extends Notification
 
         $message
             ->subject('Menunggu Pembayaran #'.$this->order->id)
+            ->from('payment@voucherplay.com','VoucherPlay')
             ->greeting('Halo')
             ->line('Harap selesaikan pembayaran Anda ')
             ->line('ID      : '.$this->order->id)
@@ -55,7 +56,7 @@ class InvoiceNotification extends Notification
             ->line('Metode Pembayaran      : '.$this->order->payment->paymentMethod->name)
             ->lineIf($this->order->payment->va_number > 0, 'Nomor VA    : '.$this->order->payment->va_number)
             ->line('Total Tagihan      : Rp. '.number_format($this->order->payment->total))
-            ->line('Batas Waktu Pembayaran      : '.date('l, d F Y H:i', strtotime($this->order->payment->expire)))
+            ->line('Batas Waktu Pembayaran      : '.$this->order->payment->expire)
             ->action('Lakukan Pembayaran', route('order.show',$this->order));
 
 
