@@ -47,7 +47,7 @@ class InvoiceNotification extends Notification
 
         $message
             ->subject('Menunggu Pembayaran #'.$this->order->id)
-            ->from('payment@voucherplay.com','VoucherPlay')
+            ->from('vp.pymnt@digitalprima.co.id','VoucherPlay')
             ->greeting('Halo')
             ->line('Harap selesaikan pembayaran Anda ')
             ->line('ID      : '.$this->order->id)
