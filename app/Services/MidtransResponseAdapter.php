@@ -30,7 +30,7 @@ class MidtransResponseAdapter
                 $output['va_number'] = $response->permata_va_number;
             }
 
-            if(isset($response->echannel))
+            if(isset($response->bill_key))
             {
                 $output['va_number'] = $response->biller_code . $response->bill_key;
             }

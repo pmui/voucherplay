@@ -48,7 +48,7 @@ class TrxSuccessNotification extends Notification
             ->greeting('Selamat Transaksi Anda berhasil!')
             ->line('Terimakasih telah berbelanja di toko kami. Berikut adalah rincian tranasaki Anda:')
             ->line('ID      : '.$this->order->id)
-            ->line('Game      : '.$this->order->game_code)
+            ->line('Game      : '.$this->order->game->title)
             ->line('Item      : '.$this->order->product_code)
             ->lineif($this->order->voucher_code,'Kode Voucher      : '.$this->order->voucher_code)
             ->line('No. Reference      : '.$this->order->reference)

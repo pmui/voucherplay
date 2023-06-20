@@ -51,10 +51,10 @@ class InvoiceNotification extends Notification
             ->greeting('Halo')
             ->line('Harap selesaikan pembayaran Anda ')
             ->line('ID      : '.$this->order->id)
-            ->line('Game      : '.$this->order->game_code)
+            ->line('Game      : '.$this->order->game->title)
             ->line('Item      : '.$this->order->product_code)
             ->line('Metode Pembayaran      : '.$this->order->payment->paymentMethod->name)
-            ->lineIf($this->order->payment->va_number > 0, 'Nomor VA    : '.$this->order->payment->va_number)
+            ->lineIf($this->order->payment->va_number, 'Nomor VA    : '.$this->order->payment->va_number)
             ->line('Total Tagihan      : Rp. '.number_format($this->order->payment->total))
             ->line('Batas Waktu Pembayaran      : '.$this->order->payment->expire)
             ->action('Lakukan Pembayaran', route('order.show',$this->order));
