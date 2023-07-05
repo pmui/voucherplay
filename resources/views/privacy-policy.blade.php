@@ -1,4 +1,8 @@
-@extends('layouts.storefront')
+@extends('layouts.storefront',[
+    'title' => config('app.name')." - Kebijakan Privasi",
+    'description' => 'Kebijakan Privasi VoucherPlay'
+    ])
+
 @section('content')
     <div class="container my-4">
         <h1 class="display-6 mb-4">Kebijakan Privasi VoucherPlay</h1>
@@ -7,7 +11,7 @@
 
         <span class="my-4">1. Pengumpulan Informasi Pribadi</span>
         <p class="lh-lg">Kami mengumpulkan informasi pribadi Anda ketika Anda menggunakan layanan kami atau berinteraksi dengan situs web kami. Informasi pribadi yang kami kumpulkan meliputi:
-            <ul>
+        <ul>
             <li>Nama lengkap</li>
             <li>Alamat email</li>
             <li>Nomor telepon</li>

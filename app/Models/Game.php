@@ -25,6 +25,7 @@ class Game extends Model
     {
         return $q->where('active',true);
     }
+
     public function scopeSearch($q, $keyword)
     {
         return $q->where('title','like',"%$keyword%")->orWhere('code','like',"%$keyword%");

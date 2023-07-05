@@ -24,14 +24,15 @@ class CheckoutController extends Controller
             'email' => $request->input('email'),
             'game_code' => $product->game->code,
             'product_code' => $product->product_code,
-            'price' => $request->input('product_price'),
+            'price' => $product->price,
             'cost' => $product->cost,
             'status' => 'waiting payment',
             'validation_fields' => json_encode($request->input('account') ?? []),
+            'user_id' => auth()->id() ?? null
         ]);
 
         $admin_fee = $request->input('admin_fee');
-        $subtotal = $request->input('product_price');
+        $subtotal = $product->price;
         $total = $admin_fee + $subtotal;
 
         $order->payment()->create([

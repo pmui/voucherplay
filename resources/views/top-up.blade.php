@@ -1,4 +1,7 @@
-@extends('layouts.storefront')
+@extends('layouts.storefront',[
+    'title' => config('app.name')." - ".$game->title,
+    'description' => $game->description
+    ])
 
 @section('content')
     <div class="d-md-none py-4 ">
@@ -21,7 +24,7 @@
     </div>
     <div class="container my-4">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card mb-2 d-md-block d-none">
                     <div class="card-body">
                         <div class="text-center">
@@ -46,7 +49,7 @@
                 </div>
             </div>
 
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <form id="form-top-up" action="{{ route('co') }}" method="POST">
                     @csrf
                     @if($game->validation_fields)
@@ -94,9 +97,12 @@
 
                             <div class="row row-cols-2 row-cols-md-3 row-cols-lg-3 g-4">
 
-                                @foreach($game->products as $product)
+                                @foreach($game->products()->active()->orderBy('price')->get() as $product)
+
+                                    @continue($product->cost > $product->price)
+
                                     <div class="col-4">
-                                        <x-card-product :product_code="$product->product_code" :title="$product->name" :price="$product->price" :value="$product->value"/>
+                                        <x-card-product :product="$product"/>
                                     </div>
                                 @endforeach
 
@@ -114,7 +120,9 @@
                             <h5 class="heading accent-color">Email</h5>
                             <p>Kami akan mengirimkan bukti pembayaran dan kode voucher ke email Anda</p>
 
-                            <input required type="email" name="email" id="email" class="form-control form-control-lg">
+                            <input required type="email" name="email" id="email" class="form-control form-control-lg"
+                                value="{{ auth()->user()->email ?? ''}}"
+                            >
                         </div>
                     </div>
 

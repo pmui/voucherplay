@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\AutoPriceJob;
 use App\Models\Game;
 use App\Services\BoostConnect;
 use Illuminate\Http\Request;
@@ -26,7 +27,12 @@ class BoostConnectController extends Controller
                     'title' => $game->categoryName,
                 ];
 
-                Game::firstOrCreate($data);
+                $existingGame = Game::where('code', $game->categoryCode)->first();
+                if ($existingGame) {
+                    continue; // Skip creating a new record
+                }
+
+                Game::create($data);
             }
             activity()->log('game sync success');
             return "OK";
@@ -82,16 +88,20 @@ class BoostConnectController extends Controller
 
     public function syncProducts()
     {
+
         try {
+            $start = hrtime(true);
+
             $games = Game::select(['id','code'])->active()->get();
 
             foreach ($games as $game) {
                 $result = BoostConnect::getProductList($game->code);
-
                 $products = json_decode($result);
 
-                foreach ($products->products as $product) {
+                $productData = [];
+                foreach ($products->products ?? [] as $product) {
                     $data = [
+                        'game_id' => $game->id,
                         'product_code' => $product->productCode,
                         'name' => $product->productName,
                         'value' => $product->productValue,
@@ -99,11 +109,20 @@ class BoostConnectController extends Controller
                         'price' => $product->productValue,
                     ];
 
-                    $game->products()->updateOrCreate(['product_code' => $data['product_code']], $data);
+                    $productData[] = $data;
                 }
+                $game->products()->upsert($productData, ['product_code'], ['name', 'value', 'cost', 'price']);
             }
+
+
             activity()->log('product synced');
-            return "OK";
+            $this->dispatch(new AutoPriceJob());
+
+            $end = hrtime(true); // End time
+
+            $executionTime = ($end - $start) / 1e+6; // Calculate execution time in milliseconds
+
+            return $executionTime. "ms";
         }
         catch (\Exception $exception)
         {

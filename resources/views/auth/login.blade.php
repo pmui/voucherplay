@@ -1,47 +1,81 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+@extends('layouts.storefront',[
+    'title' => config('app.name')." - Daftar",
+    'description' => 'Ayo segera daftar dan nikmati berbagai keuntungan yang bisa kamu dapatkan! Dengan mendaftar, kamu akan mendapatkan riwayat pembelian yang lengkap, promo eksklusif, dan berbagai keuntungan menarik lainnya.'
+    ])
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+@section('content')
+    <div class="container mt-5 mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
+
+                    <h1>Masuk</h1>
+                    @if(session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                    <div class="mb-3">
+                        <a href="{{ route('google.login') }}" class="btn btn-outline-secondary w-100 p-2 rounded-0">
+                            <img src="https://img.icons8.com/color/16/000000/google-logo.png" class="me-2" alt="Google Logo">
+                            Lanjutkan dengan Google
+                        </a>
+                    </div>
+
+                    <div class="separator">
+                        <hr class="separator-line">
+                        <span class="separator-text">Atau masuk dengan email</span>
+                        <hr class="separator-line">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan alamat email" value="{{ old('email') }}">
+                        @error('email')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Kata Sandi</label>
+                        <div class="input-group">
+                            <input type="password" class="password form-control" name="password" placeholder="Masukkan kata sandi">
+                            <button class="btn btn-outline-secondary togglePassword" type="button">Tampilkan Password</button>
+                        </div>
+                        @error('password')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-accent w-100 mt-2">Login</button>
+                    </div>
+                </form>
+
+                <p class="mt-5">Belum punya akun?</p>
+                <a href="{{ route('login') }}" class="btn btn-outline-primary w-100 p-2">Daftar</a>
+            </div>
+
         </div>
+    </div>
+@endsection
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+@push('scripts')
+    <script>
+        const togglePasswords = document.querySelectorAll('.togglePassword');
+        const passwords = document.querySelectorAll('.password');
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+        togglePasswords.forEach(function(togglePassword, index) {
+            togglePassword.addEventListener('click', function () {
+                const type = passwords[index].getAttribute('type') === 'password' ? 'text' : 'password';
+                passwords[index].setAttribute('type', type);
+                this.innerHTML = type === 'password' ? 'Tampilkan Password' : 'Sembunyikan Password';
+            });
+        });
+    </script>
+@endpush
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ml-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>

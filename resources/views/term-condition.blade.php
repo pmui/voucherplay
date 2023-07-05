@@ -1,4 +1,7 @@
-@extends('layouts.storefront')
+@extends('layouts.storefront',[
+    'title' => config('app.name')." - Syarat dan Ketentuan",
+    'description' => 'Syarat dan Ketentuan Penggunaan VoucherPlay'
+    ])
 @section('content')
     <div class="container my-4">
         <h1 class="display-6 mb-4">Syarat dan Ketentuan Penggunaan VoucherPlay</h1>

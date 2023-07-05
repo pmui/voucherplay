@@ -1,4 +1,9 @@
-@extends('layouts.storefront')
+@extends('layouts.storefront',[
+    'title' => config('app.name')." - FAQ",
+    'description' => 'Frequently Asked Question VoucherPlay'
+    ])
+
+
 @section('content')
     <div class="container my-4">
         <h1 class="display-6 mb-4">FAQ (Frequently Asked Questions) VoucherPlay</h1>

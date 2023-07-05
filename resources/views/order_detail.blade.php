@@ -1,4 +1,6 @@
-@extends('layouts.storefront')
+@extends('layouts.storefront',[
+    'title' => config('app.name')." - Detail Pesanan #".$order->id,
+])
 
 @section('content')
     <main class="container my-4">

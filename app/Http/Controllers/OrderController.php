@@ -17,4 +17,15 @@ class OrderController extends Controller
         $this->dispatch(new SendMailNotif($order));
         return view('resend_success', compact($order));
     }
+
+    public function history()
+    {
+        $this->middleware = ['auth'];
+
+        $orders = \Auth::user()->orders;
+
+        return view('history', compact('orders'));
+
+
+    }
 }

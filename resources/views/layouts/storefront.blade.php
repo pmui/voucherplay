@@ -11,8 +11,13 @@
         gtag('config', '{{ env('GTAG') ?? '' }}');
     </script>
     <title>{{ $title ?? config('app.name') }}</title>
+
+    <link rel="icon" type="image/png" href="https://i.imgur.com/cKDofhP.png" />
     <!-- Required meta tags -->
     <meta charset="utf-8">
+    <meta name="description" content="{{ $description ?? 'Top Up & Voucher Game Murah, Cepat, Aman! Sumber terpercaya untuk top up dan voucher game dengan harga terjangkau.' }}">
+
+
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,11 +35,12 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-main sticky-top">
     <div class="container d-flex align-items-center">
         <div class="d-flex">
-            <button class="navbar-toggler d-block ml-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <a type="button" class="navbar-toggler d-block mr-2 p-2 text-white border-0"  data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar" >
+                <img src="{{ asset('images/menu-icon.svg') }}" alt="logo" style="height: 24px">
+            </a>
+
             <a class="navbar-brand" href="{{ route('home') }}">
-                <img src="{{ asset('images/logo.png') }}" alt="logo" style="height: 48px">
+                VoucherPlay
             </a>
         </div>
 
@@ -61,35 +67,36 @@
 
                 <ul id="result" class="list-group mt-2 shadow-sm"></ul>
             </form>
-
-
         </div>
     </div>
 </div>
 
 
-<div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
-    <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="sidebarLabel">Menu</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body p-0">
-        <div class="p-4">
-            <p>
-                Ayo segera daftar dan nikmati berbagai keuntungan yang bisa kamu dapatkan! Dengan mendaftar, kamu akan mendapatkan riwayat pembelian yang lengkap, promo eksklusif, dan berbagai keuntungan menarik lainnya.
-            </p>
-
-            <a href="#" class="btn btn-primary btn-accent w-100 p-2 mt-5">Daftar Sekarang</a>
-        </div>
-    </div>
-</div>
+@include('layouts.offcanvase_menu')
 
 
 <main>
     @yield('content')
 
-
     <footer class="" style="background-color: #02361b">
+        <div class="bg-main">
+            <div class="container pt-4">
+                <div class="row">
+                    <div class="col">
+                        <img src="{{ asset('images/logo-text-white.svg') }}" alt="voucherplay.com" class="img-fluid mb-2" style="height: 64px">
+                        <p>Top Up & Voucher Game Murah, Cepat, Aman! Sumber terpercaya untuk top up dan voucher game dengan harga terjangkau.</p>
+                    </div>
+                    <div class="col">
+                        <h5>Ikuti Kami</h5>
+                        <a href="https://www.instagram.com/voucherplay/"><img class="img-fluid" style="width: 64px" src="https://i.imgur.com/jhaZ7g6.png" alt="instagram"></a>
+                        <a href="https://www.facebook.com/profile.php?id=100094173960401"><img class="img-fluid" style="width: 64px" src="https://i.imgur.com/IiqJoln.png" alt="facebook"></a>
+                        <a href="https://twitter.com/voucherplaycom"><img class="img-fluid" style="width: 64px" src="https://i.imgur.com/f2lAro2.png" alt="twitter"></a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="container p-2">
             <span class="text-decoration-none mx-4 text-white" >&copy; 2023</span>
             <a class="text-decoration-none mx-4" href="{{ route('faq') }}">FAQ</a>
@@ -97,7 +104,6 @@
             <a class="text-decoration-none mx-4" href="{{ route('policy-privacy') }}">Kebijakan Privasi</a>
             <a class="text-decoration-none mx-4" href="{{ route('contact') }}">Kontak Kami</a>
         </div>
-
     </footer>
 </main>
 <!-- Optional JavaScript -->
@@ -156,7 +162,7 @@
     {
         var html = '';
         for (let r of data) {
-            html += `<a href="{{ route('top-up') }}/${r.id}" class="list-group-item list-group-item-action" >
+            html += `<a href="{{ route('top-up') }}/${r.code}" class="list-group-item list-group-item-action" >
                     <div><img src="${r.image_url}" alt="" style="width: 64px" class="mr-2">
                     <span>${r.title}</span>
                     </div>

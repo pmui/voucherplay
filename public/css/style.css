@@ -130,6 +130,20 @@ body
     z-index: 9999;
 }
 
+.separator {
+    display: flex;
+    align-items: center;
+}
+
+.separator-line {
+    flex-grow: 1;
+    border-top: 1px solid #ddd;
+}
+
+.separator-text {
+    margin: 0 10px;
+}
+
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }

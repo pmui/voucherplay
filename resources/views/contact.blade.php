@@ -1,4 +1,8 @@
-@extends('layouts.storefront')
+@extends('layouts.storefront',[
+    'title' => config('app.name')." - Kontak Kami",
+    'description' => 'Kontak VoucherPlay'
+    ])
+
 @section('content')
     <div class="container my-4">
         <h1 class="display-6 mb-4">Kontak Kami</h1>

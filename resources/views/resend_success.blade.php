@@ -1,4 +1,6 @@
-@extends('layouts.storefront')
+@extends('layouts.storefront', [
+    'title' => config('app.name')." - Kirim Ulang Pesanan #".$order->id,
+])
 @section('content')
     <div class="container my-4 text-center">
         <h4 class="mt-5">Email Berhasil dikirim!.</h4>

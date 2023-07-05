@@ -18,9 +18,15 @@ class Product extends Model
     {
         return $this->belongsTo(Game::class);
     }
-public function getActivitylogOptions(): LogOptions
-{
-    // TODO: Implement getActivitylogOptions() method.
-    return LogOptions::defaults()
-        ->logExcept(['product_code']);
-}}
+
+    public function scopeActive($q)
+    {
+        return $q->where('active',true);
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        // TODO: Implement getActivitylogOptions() method.
+        return LogOptions::defaults()
+            ->logExcept(['product_code']);
+    }}
