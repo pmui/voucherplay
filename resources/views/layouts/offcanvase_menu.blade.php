@@ -34,9 +34,9 @@
                     </div>
                 </div>
                 <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action" href="#">My History</a>
-                    <a class="list-group-item list-group-item-action" href="#">Promos</a>
-                    <a class="list-group-item list-group-item-action" href="#">Profil</a>
+                    <a class="list-group-item list-group-item-action" href="{{ route('history') }}">Riwayat Pembelian</a>
+{{--                    <a class="list-group-item list-group-item-action" href="#">Promos</a>--}}
+{{--                    <a class="list-group-item list-group-item-action" href="#">Profil</a>--}}
                 </div>
                 <form action="{{ route('logout') }}" method="POST" class="sticky-bottom">
                     @csrf
