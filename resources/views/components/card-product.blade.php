@@ -9,7 +9,7 @@
          title="{{ $product->name }}"
     >
         <div class="card-body text-center">
-            <h6>{{ $product->name ?? 'Nama Produk' }}</h6>
+            <h6 class="mt-4">{{ $product->name ?? 'Nama Produk' }}</h6>
             @if($product->value > $product->price)
                 <div class="position-absolute badge bg-main rounded-start-0 shadow-sm p-2 start-0 top-0" style="z-index: 999;">
                     <small>Disc Rp. {{ number_format($product->value - $product->price)  }}</small>

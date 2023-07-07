@@ -13,7 +13,7 @@ class Order extends Model
     use HasFactory, LogsActivity, Notifiable;
 
     protected $fillable = ['email','phone','game_code','product_code','price','cost', 'voucher_code','reference',
-        'validation_fields','response','status'];
+        'validation_fields','response','status', 'user_id'];
 
     public function payment()
     {

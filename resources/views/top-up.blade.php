@@ -95,18 +95,13 @@
                         <div class="card-body">
                             <h5 class="heading accent-color mb-4">Pilih Item</h5>
 
-                            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-3 g-4">
-
+                            <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4">
                                 @foreach($game->products()->active()->orderBy('price')->get() as $product)
-
                                     @continue($product->cost > $product->price)
-
-                                    <div class="col-4">
+                                    <div class="col-6 col-sm-6 col-md-4">
                                         <x-card-product :product="$product"/>
                                     </div>
                                 @endforeach
-
-
                             </div>
                         </div>
                     </div>
